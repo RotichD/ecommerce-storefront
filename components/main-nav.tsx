@@ -12,7 +12,7 @@ interface MainNavProps {
   data: Category[];
 }
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
@@ -33,7 +33,7 @@ const MainNav: React.FC<MainNavProps> = ({ data }) => {
           <div className='flex h-16 items-center justify-between'>
             {/* Logo */}
             <div className='flex flex-1'>
-              <Link href='#'>
+              <Link href='/'>
                 <span className='sr-only'>Fake Company</span>
                 <span className='ml-2 font-semibold text-gray-800'>STORE</span>
               </Link>

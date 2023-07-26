@@ -11,7 +11,7 @@ interface Query {
 }
 
 const getProducts = async (query: Query): Promise<Product[]> => {
-  const url = qs.stringify({
+  const url = qs.stringifyUrl({
     url: URL,
     query: {
       colorId: query.colorId,
@@ -21,7 +21,7 @@ const getProducts = async (query: Query): Promise<Product[]> => {
     },
   });
 
-  const res = await fetch(URL);
+  const res = await fetch(url);
 
   return res.json();
 };
