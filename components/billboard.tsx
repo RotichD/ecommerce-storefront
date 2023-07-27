@@ -1,4 +1,5 @@
 import { Billboard as BillboardType } from '@/types';
+import Image from 'next/image';
 
 interface BillboardProps {
   data: BillboardType;
@@ -6,17 +7,29 @@ interface BillboardProps {
 
 const Billboard: React.FC<BillboardProps> = ({ data }) => {
   return (
-    <div className='p-4 sm:p-6 lg:p-8 rounded-xl overflow-hidden'>
+    <div className='relative bg-gray-800 px-6 py-32 sm:px-12 sm:py-40 lg:px-16'>
+      <div className='absolute inset-0 overflow-hidden'>
+        <Image
+          fill
+          src={data?.imageUrl}
+          alt='image that describes category'
+          className='h-full w-full object-cover object-center'
+        />
+      </div>
       <div
-        className='rounded-lg relative aspect-square md:aspect-[2.4/1] overflow-hidden bg-cover'
-        style={{ backgroundImage: `url(${data?.imageUrl})` }}
-      >
-        <div className='absolute inset-0 bg-gradient-to-b from-transparent to-indigo-800 opacity-50' />
-        <div className='h-full w-full flex flex-col justify-center items-center text-center gap-y-8'>
-          <div className='text-white drop-shadow font-bold text-3xl sm:text-5xl lg:text-6xl sm:max-w-xl max-w-xs'>
-            {data.label}
-          </div>
-        </div>
+        aria-hidden='true'
+        className='absolute inset-0 bg-gray-900 bg-opacity-50'
+      />
+      <div className='relative mx-auto flex max-w-3xl flex-col items-center text-center'>
+        <h2 className='text-3xl md:text-5xl lg:text-6xl sm:max-w-xl max-w-xs font-bold tracking-tight text-white sm:text-4xl'>
+          {data?.label}
+        </h2>
+        <p className='mt-3 text-xl text-white'>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, esse.
+          Animi deserunt in voluptates quisquam quae reiciendis recusandae amet
+          magnam consectetur. Provident, illo eum recusandae eos delectus
+          expedita modi dolores.
+        </p>
       </div>
     </div>
   );

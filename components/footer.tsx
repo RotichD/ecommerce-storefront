@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-interface IconProps {
+interface IconProps extends React.SVGProps<SVGSVGElement> {
   name: string;
   href: string;
 }
@@ -8,7 +8,7 @@ interface IconProps {
 const navigation = {
   main: [
     { name: 'About', href: '#' },
-    { name: 'Project Goals', href: '#' },
+    { name: 'Project Goals', href: '/project-goals' },
   ],
   social: [
     {
@@ -63,7 +63,10 @@ const Footer = () => {
               className='text-gray-400 hover:text-gray-500'
             >
               <span className='sr-only'>{item.name}</span>
-              <item.icon className='h-6 w-6' aria-hidden='true' />
+              {item.icon({
+                className: 'h-6 w-6',
+                'aria-hidden': 'true',
+              } as IconProps)}
             </Link>
           ))}
         </div>
