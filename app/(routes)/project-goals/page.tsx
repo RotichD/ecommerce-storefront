@@ -156,7 +156,8 @@ const ProjectGoalsPage = () => {
               size and color per product. On the Front End of the store it would
               be nice to have the ability to choose between sizes and colors.
               I'd also like to implement a functioning rating system that users
-              contribute to. Manage state with Redux or Recoil.
+              contribute to. Manage state with Redux or Recoil. Add loading
+              skeletons.
             </p>
           </div>
         </div>

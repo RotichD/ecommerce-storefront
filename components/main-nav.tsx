@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Popover } from '@headlessui/react';
 import { usePathname } from 'next/navigation';
@@ -18,6 +18,7 @@ function classNames(...classes: string[]) {
 
 const MainNav: React.FC<MainNavProps> = ({ data }) => {
   const [open, setOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   const pathname = usePathname();
 
@@ -26,6 +27,15 @@ const MainNav: React.FC<MainNavProps> = ({ data }) => {
     label: route.name,
     active: pathname === `/category/${route.id}`,
   }));
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <header className='relative bg-white border-b border-gray-200 '>
       <nav aria-label='Top' className='mx-auto max-w-7xl sm:px-6 lg:px-8'>

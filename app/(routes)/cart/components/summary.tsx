@@ -30,7 +30,7 @@ const Summary = () => {
 
   const onCheckout = async () => {
     const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_API}/checkout`,
+      `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
       {
         productIds: items.map((item) => item.id),
       }
@@ -51,6 +51,7 @@ const Summary = () => {
       <button
         type='button'
         onClick={onCheckout}
+        disabled={items.length === 0}
         className='w-full mt-6 rounded-md bg-red-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600'
       >
         Checkout
