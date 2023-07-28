@@ -2,6 +2,7 @@
 import { Tab } from '@headlessui/react';
 import Image from 'next/image';
 import { Image as ImageType } from '@/types';
+import { useState, useEffect } from 'react';
 
 interface GalleryProps {
   images: ImageType[];
@@ -12,6 +13,16 @@ function classNames(...classes: string[]) {
 }
 
 const Gallery: React.FC<GalleryProps> = ({ images }) => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <>
       <Tab.Group as='div' className='flex flex-col-reverse'>
@@ -50,7 +61,8 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
         <Tab.Panels className='aspect-h-1 aspect-w-1 w-full'>
           {images.map((image) => (
             <Tab.Panel key={image.id}>
-              <img
+              <Image
+                fill
                 src={image.url}
                 alt='Product Image'
                 className='h-full w-full object-cover object-center sm:rounded-lg'

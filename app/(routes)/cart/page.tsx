@@ -10,7 +10,7 @@ const CartPage = () => {
 
   useEffect(() => {
     setIsMounted(true);
-  });
+  }, []);
 
   const cart = useCart();
 
