@@ -24,7 +24,7 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({ sizes, colors }) => {
       <div className='flex items-center py-4 lg:hidden'>
         <button
           onClick={onOpen}
-          className='ml-auto text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden'
+          className='ml-auto text-gray-400 hover:text-gray-500 lg:hidden'
         >
           <FunnelIcon className='-mr-0.5 h-8 w-8' />
         </button>

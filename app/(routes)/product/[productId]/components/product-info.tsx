@@ -4,6 +4,8 @@ import { StarIcon } from '@heroicons/react/20/solid';
 import { HeartIcon } from '@heroicons/react/24/outline';
 import { Product } from '@/types';
 import Currency from '@/components/ui/currency';
+import useCart from '@/hooks/use-cart';
+import { MouseEventHandler } from 'react';
 
 interface ProductInfoProps {
   data: Product;
@@ -14,6 +16,13 @@ function classNames(...classes: string[]) {
 }
 
 const ProductInfo: React.FC<ProductInfoProps> = ({ data }) => {
+  const cart = useCart();
+
+  const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.stopPropagation();
+    cart.addItem(data);
+  };
+
   return (
     <div className='mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0'>
       <h1 className='text-3xl font-bold tracking-tight text-gray-900'>
@@ -35,7 +44,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ data }) => {
             {[0, 1, 2, 3, 4].map((rating) => (
               <StarIcon
                 key={rating}
-                className={classNames('text-indigo-500 h-5 w-5 flex-shrink-0')}
+                className={classNames('text-red-500 h-5 w-5 flex-shrink-0')}
                 aria-hidden='true'
               />
             ))}
@@ -98,13 +107,14 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ data }) => {
         <div className='mt-10 flex'>
           <button
             type='submit'
-            className='flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full'
+            className='flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-red-600 px-8 py-3 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full'
           >
             Add to bag
           </button>
 
           <button
             type='button'
+            onClick={onAddToCart}
             className='ml-4 flex items-center justify-center rounded-md px-3 py-3 text-gray-400 hover:bg-gray-100 hover:text-gray-500'
           >
             <HeartIcon className='h-6 w-6 flex-shrink-0' aria-hidden='true' />
